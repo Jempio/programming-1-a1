@@ -9,8 +9,7 @@ time.sleep(1.5)
 name = input("Could I get your name? ")
 print(f"Alright {name} let's start!")
 time.sleep(2)
-q1 = input(
-    "Which of these pokemon evolve from Wooper? A,B,C,or D\n A.Hoopa\n B.Swampert\n C.Quagsire\n D.Stunfisk\n").upper()
+q1 = input("Which of these pokemon evolve from Wooper? A,B,C,or D\n A.Hoopa\n B.Swampert\n C.Quagsire\n D.Stunfisk\n").upper()
 if q1 == "C":
     print("Nice one!")
     score += 1
