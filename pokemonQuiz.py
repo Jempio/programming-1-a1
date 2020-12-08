@@ -6,7 +6,7 @@ import time
 score = 0
 print("Welcome to Justin's Pogger's Pokemon Quiz")
 time.sleep(1.5)
-name = input("Could I get your name?")
+name = input("Could I get your name? ")
 print(f"Alright {name} let's start!")
 time.sleep(2)
 q1 = input(
@@ -28,13 +28,13 @@ if q3 == "NORMAN":
     score += 1
 else:
     print("Unlucky.")
-q4 = input("Who is the main villan in Pokemon Black and White?").upper()
+q4 = input("Who is the main villan in Pokemon Black and White?\n").upper()
 if q4 == "GHETSIS":
     print("Holy nice job!")
     score += 1
 else:
     print("Aw good try")
-q5 = int(input("What is the base pp of Roost?"))
+q5 = int(input("What is the base pp of Roost?\n"))
 if q5 == 10:
     print("Ayy")
     score += 1
