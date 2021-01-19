@@ -84,6 +84,7 @@ def main():
     # Sprite group and sprite creation
     all_sprites_group = pygame.sprite.Group()
     jewels_group = pygame.sprite.Group()
+    enemy_group = pygame.sprite.Group()
     score = 0
     lives = 3
 
@@ -106,6 +107,7 @@ def main():
         enemy.rect.x = random.randrange(WIDTH - enemy.rect.width)
         enemy.rect.y = random.randrange(HEIGHT - enemy.rect.height)
         all_sprites_group.add(enemy)
+        enemy_group(enemy)
 
     # ----- MAIN LOOP
     while not done:
@@ -122,6 +124,10 @@ def main():
         for jewels_collected in jewels_collected:
             score += 1
             print(score)
+
+        enemy_hit_group = pygame.sprite.spritecollide(player, enemy_group, True)
+        if enemy_hit_group:
+            done = True
 
         # ----- DRAW
         screen.fill(BLACK)
