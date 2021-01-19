@@ -17,6 +17,7 @@ WIDTH = 1920
 HEIGHT = 1080
 TITLE = "<Sprite Example>"
 NUM_JEWELS = 75
+NUM_ENEMY = 10
 
 
 class Jewel(pygame.sprite.Sprite):
@@ -26,7 +27,7 @@ class Jewel(pygame.sprite.Sprite):
 
         # Image is a surface
         self.image = pygame.Surface((35, 20))
-        self.image.fill((100,255,100))
+        self.image.fill((100, 255, 100))
 
         # Rect is Rectangle (x, y, width, height)
         self.rect = self.image.get_rect()
@@ -50,6 +51,23 @@ class Enemy(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
 
+        self.image = pygame.image.load("./images/ganon.png")
+
+        self.rect = self.image.get_rect()
+
+        self.vel_x = 5
+        self.vel_y = 4
+
+    def update(self):
+        self.rect.x += self.vel_x
+        self.rect.y += self.vel_y
+
+        # keep it in the screen
+        if self.rect.x + self.rect.width > WIDTH or self.rect.x < 0:
+            self.vel_x *= -1
+        if self.rect.y + self.rect.height > HEIGHT or self.rect.y < 0:
+            self.vel_y *= -1
+
 
 def main():
     pygame.init()
@@ -67,6 +85,7 @@ def main():
     all_sprites_group = pygame.sprite.Group()
     jewels_group = pygame.sprite.Group()
     score = 0
+    lives = 3
 
     # Jewel Creation
     for i in range(NUM_JEWELS):
@@ -80,6 +99,13 @@ def main():
     # Player Creation
         player = Player()
         all_sprites_group.add(player)
+
+    # Enemy Creation
+    for i in range(NUM_ENEMY):
+        enemy = Enemy()
+        enemy.rect.x = random.randrange(WIDTH - enemy.rect.width)
+        enemy.rect.y = random.randrange(HEIGHT - enemy.rect.height)
+        all_sprites_group.add(enemy)
 
     # ----- MAIN LOOP
     while not done:
